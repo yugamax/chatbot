@@ -12,6 +12,10 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 8000
+RUN mkdir -p /tmp/matplotlib && chmod -R 777 /tmp/matplotlib
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENV MPLCONFIGDIR=/tmp/matplotlib
+
+EXPOSE 7860
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
